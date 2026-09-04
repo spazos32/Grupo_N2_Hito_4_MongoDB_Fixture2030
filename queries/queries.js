@@ -69,13 +69,11 @@ print("── 4. Proyección: nombre, apellido, dorsal, posicion de jugadores de
 const proyeccion = db.jugadores.find(
   { equipoId: "BRA" },
   {
-    projection: {
-      _id:      0,
-      nombre:   1,
-      apellido: 1,
-      dorsal:   1,
-      posicion: 1
-    }
+    _id:      0,
+    nombre:   1,
+    apellido: 1,
+    dorsal:   1,
+    posicion: 1
   }
 ).toArray();
 
@@ -95,7 +93,7 @@ const PAGE_NUM  = 2;   // Página 2 (skip = 10)
 
 const pagina = db.jugadores.find(
   {},
-  { projection: { _id: 0, apellido: 1, nombre: 1, equipoId: 1, dorsal: 1 } }
+  { _id: 0, apellido: 1, nombre: 1, equipoId: 1, dorsal: 1 }
 )
   .sort({ apellido: 1, nombre: 1 })
   .skip((PAGE_NUM - 1) * PAGE_SIZE)
@@ -133,7 +131,7 @@ const resJugador = db.jugadores.updateOne(
 print(`  Estadísticas de González actualizadas: matchedCount=${resJugador.matchedCount}, modifiedCount=${resJugador.modifiedCount}`);
 
 print("  Estado actual del jugador:");
-printjson(db.jugadores.findOne({ dni: "99999999" }, { projection: { _id: 0, nombre: 1, apellido: 1, estadisticas: 1 } }));
+printjson(db.jugadores.findOne({ dni: "99999999" }, { _id: 0, nombre: 1, apellido: 1, estadisticas: 1 }));
 print("");
 
 // ---------------------------------------------------------------------------
