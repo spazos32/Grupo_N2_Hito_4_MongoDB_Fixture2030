@@ -13,17 +13,18 @@ generados con Faker.
 
 ## 📋 Requisitos previos
 
-| Herramienta      | Versión mínima | Verificación           |
-|------------------|----------------|------------------------|
-| Docker Desktop   | 4.x            | `docker --version`     |
-| Docker Compose   | 2.x (incluido) | `docker compose version` |
-| Node.js          | 18+            | `node --version`       |
-| npm              | 9+             | `npm --version`        |
-| mongosh (opcional)| 2.x           | `mongosh --version`    |
+| Herramienta        | Versión mínima | Verificación             |
+| ------------------ | -------------- | ------------------------ |
+| Docker Desktop     | 4.x            | `docker --version`       |
+| Docker Compose     | 2.x (incluido) | `docker compose version` |
+| Node.js            | 18+            | `node --version`         |
+| npm                | 9+             | `npm --version`          |
+| mongosh (opcional) | 2.x            | `mongosh --version`      |
 
 > **Nota:** `mongosh` es necesario solo para ejecutar las consultas de
 > `queries/queries.js`. Si no lo tenés instalado, podés ejecutar las consultas
 > desde la shell de MongoDB dentro del contenedor:
+>
 > ```bash
 > docker exec -it fixture2030_mongo mongosh fixture2030
 > ```
@@ -46,6 +47,7 @@ docker compose up -d
 ```
 
 Esto:
+
 - Descarga la imagen `mongo:7.0` (solo la primera vez).
 - Crea un contenedor llamado `fixture2030_mongo`.
 - Ejecuta automáticamente `init/01-validators.js` para crear las colecciones
@@ -78,6 +80,7 @@ npm run seed
 ```
 
 El script `seed.js`:
+
 - Genera **64 equipos** con selecciones nacionales reales (códigos FIFA).
 - Genera entre **15 y 26 jugadores** sintéticos por equipo (≥ 1000 en total).
 - Usa `bulkWrite` con `upsert: true` → **es idempotente**: ejecutarlo dos
@@ -86,6 +89,7 @@ El script `seed.js`:
 - Imprime un resumen final con la verificación de integridad.
 
 **Salida esperada:**
+
 ```
 ✔ Conectado a MongoDB en mongodb://localhost:27017
 
@@ -123,6 +127,7 @@ docker exec -it fixture2030_mongo mongosh fixture2030 --file /docker-entrypoint-
 ```
 
 > **Alternativa:** Copiar el archivo al contenedor y ejecutarlo:
+>
 > ```bash
 > docker cp queries/queries.js fixture2030_mongo:/tmp/queries.js
 > docker exec -it fixture2030_mongo mongosh fixture2030 --file /tmp/queries.js
@@ -176,7 +181,7 @@ Grupo_N2_Hito_4_MongoDB_Fixture2030/
 │   └── seed.js                  # Script de carga idempotente de datos sintéticos
 │
 ├── queries/
-│   └── queries.js               # Consultas de ejemplo para mongosh (CRUD, 
+│   └── queries.js               # Consultas de ejemplo para mongosh (CRUD,
 │                                # agregación, explain)
 │
 ├── docs/
@@ -230,10 +235,10 @@ Relación por **referencia**: `jugadores.equipoId` → `equipos._id`
 ## 👥 Integrantes del Grupo N°2
 
 | Nombre | Legajo |
-|--------|--------|
-|        |        |
-|        |        |
-|        |        |
+| ------ | ------ |
+| Santiago Pazos | 1172896 |
+| Joaquin Nuñez | 1224134 |
+| Valentina Frisoli | 1167852 |
 
 ---
 
